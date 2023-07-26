@@ -1,0 +1,69 @@
+<head>
+	<meta charset="utf-8">
+	<title>MapIntel: Search Result</title>
+</head>
+<div id="map" style="height: 100%; width: 100%; background-color: grey"></div>
+<script>
+function initMap() {
+    var center = {lat: target[0], lng: target[1]};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: center
+    });
+<!--    var marker = new google.maps.Marker({-->
+<!--      position: center,-->
+<!--      map: map-->
+<!--    });-->
+
+
+    var infowindow =  new google.maps.InfoWindow({});
+    var marker, count;
+    for (count = 0; count < locations.length; count++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[count]['Geo'][0], locations[count]['Geo'][1]),
+          map: map,
+          title: locations[count]['Name']
+        });
+    google.maps.event.addListener(marker, 'click', (function (marker, count) {
+          return function () {
+            infowindow.setContent(`<a href=${locations[count]['url']}>${locations[count]['Name']}</a> &emsp; &emsp; Date: ${locations[count]['Date']}</br><b>${locations[count]['Summary']}</b>`);
+            infowindow.open(map, marker);
+          }
+        })(marker, count));
+
+
+<!--        console.log(locations[count]['Name'], locations[count]['Geo'][0], locations[count]['Geo'][1])-->
+    }
+     if (locations.length === 0) {
+        if (confirm("Sorry, we can't find anything for you. \nMaybe try some other keyword?")) {
+            window.location.href = "./search"
+        }
+
+    } else {
+        alert(`Hey, we find ${locations.length} news for you. \nEnjoy exploring them from our map!`)
+        setTimeout(()=>document.getElementById('newSearch').style.display="block", 1000)
+    }
+  }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIE914GIf31hmI3aSFSGSMk0ZKFoGXTkw&language=en&callback=initMap">
+</script>
+<a href="./search"><button id="newSearch" style="
+    display: none;
+    position: fixed;
+    top: 18px;
+    right: 62px;
+    height: 40px;
+    width: 109px;
+    border-radius: 3px;
+    border: #bbbbbb;
+    background: white;
+    opacity: 0.98;
+    font-size: medium;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px #00000036;
+    :hover {
+	    background: #e2e2e4;
+	};
+">New Search</button></a>
+

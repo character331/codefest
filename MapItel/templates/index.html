@@ -1,0 +1,113 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<form action="/mapintel/wait" method="get">-->
+<!--    location<input type="text" name="location"><br>-->
+<!--    keyword<input type="text" name="keyword"><br>-->
+
+
+<!--    <input type="submit" value="Search">-->
+
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>MapIntel: New Search</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+<body>
+<h1 style="
+    position: absolute;
+	width: 600px;
+	margin-left: -300px;
+    left: 50%;
+    top: 25%;
+	color: #020202c7;
+	"
+>MapIntel - Connect You to the Word</h1>
+<form action="/mapintel/wait" method="get" class="search-box" id="searchBox">
+
+		<input class="search-txt" type="text" name="location" placeholder="Where?">
+        <input class="search-txt" type="text" name="keyword" placeholder="What?">
+<!--		<input type="submit" value="Search">-->
+            <a class="search-btn" id="searchBtn">
+                <i class="fas fa-search"></i>
+            </a>
+
+    </form>
+</body>
+<script>
+    const startNewSearch = () => document.getElementById("searchBox").submit()
+    document.getElementById("searchBtn").addEventListener("click", startNewSearch)
+</script>
+<style>
+    body{
+    background-image: linear-gradient(135deg, #a090f2 0%, #3b5780f7 100%);
+	background-size: cover;
+	width: 100%;
+}
+
+
+
+.search-box{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background:#2f3640;
+	height: 38px;
+	border-radius: 60px;
+	padding: 10px;
+	:hover {
+	    width: 405px;
+	}
+}
+
+.search-box:hover > .search-txt{
+	width: 155px;
+	padding: 0 10px;
+    margin-right: 7px;
+}
+
+.search-box:hover > .search-btn{
+	background: #ffffffd4;
+}
+
+.search-btn{
+	color: #988fc7;
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #2f3640;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+.search-txt{
+    border: white;
+    border-radius: 20px;
+    background: #ffffff14;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: #ffffff14;
+    font-size: 16px;
+    color: white;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+</style>
